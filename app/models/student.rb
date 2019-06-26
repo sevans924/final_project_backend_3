@@ -3,6 +3,9 @@ class Student < ApplicationRecord
   has_many :studentParents
   has_many :parents, through: :studentParents
   has_many :checkIns
+
+  validates :email, uniqueness: true
+  validates(:password, { :length => { :in => 6..20 } })
 end
 
 
