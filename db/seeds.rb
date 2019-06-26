@@ -7,11 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+Counselor.destroy_all
+Student.destroy_all
+Parent.destroy_all
+CheckIn.destroy_all
 
 counselor1 = Counselor.create(first_name: "Meghan", last_name: "Cassidy", email: "meghan@gmail.com", phone: "3015557777", password: "meghanmeghan")
 
-student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn")
+student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn", counselor_id: counselor1.id)
 
-parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie")
+parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie", student_id: student1.id)
+
+checkin1 = CheckIn.create(student_id: student1.id, counselor_id: counselor1.id, plan: true, goal: "Manage test anxiety", signal: "poor", strategy: "Grounding exercise, meditation, music", signal_reflection: "racing heart, dizziness", emotion: "scared, anxious, nervous", event: "Right before I have a test", reflection: "")
+
 
 

@@ -1,6 +1,7 @@
 class CounselorController < ApplicationController
 
     def index
+        @counselors = Counselor.all
     end
 
     def show
