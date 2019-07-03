@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   has_many :checkIns
 
   validates :email, uniqueness: true
+  has_secure_password
   
 end
 

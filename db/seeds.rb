@@ -13,11 +13,11 @@ Parent.destroy_all
 CheckIn.destroy_all
 StudentParent.destroy_all
 
-counselor1 = Counselor.create(first_name: "Meghan", last_name: "Cassidy", email: "meghan@gmail.com", phone: "3015557777", password: "meghanmeghan")
+counselor1 = Counselor.create(first_name: "Meghan", last_name: "Cassidy", email: "meghan@gmail.com", phone: "3015557777", password: "meghanmeghan", username: "meghan@gmail.com")
 
-student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn", counselor_id: counselor1.id)
+student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn", counselor_id: counselor1.id, username: "john@gmail.com")
 
-parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie")
+parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie", username: "maggie@gmail.com")
 
 checkin1 = CheckIn.create(student_id: student1.id, counselor_id: counselor1.id, plan: true, goal: "Manage test anxiety", signal: "poor", strategy: "Grounding exercise, meditation, music", signal_reflection: "racing heart, dizziness", emotion: "scared, anxious, nervous", event: "Right before I have a test", reflection: "")
 

@@ -5,7 +5,10 @@ module Api
 
           before_action :find_parent, only: [:show, :edit, :update]
 
-        
+        def index
+          @parents = Parent.all
+          render json: @parents
+        end
 
           def show
             render json: @parent
@@ -35,7 +38,7 @@ module Api
             @parent = Parent.find(params[:id])
           end
           def parent_params
-              params.require(:parent).permit(:first_name, :last_name, :email, :phone, :password, student_id)
+              params.require(:parent).permit(:first_name, :last_name, :email, :phone, :password_digest, :username)
           end
       end
     end

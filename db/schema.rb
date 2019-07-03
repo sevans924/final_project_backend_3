@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_163739) do
+ActiveRecord::Schema.define(version: 2019_06_28_171356) do
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "student_id"
@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(version: 2019_06_27_163739) do
     t.string "last_name"
     t.string "email"
     t.string "phone"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "username"
   end
 
   create_table "parents", force: :cascade do |t|
@@ -44,10 +45,11 @@ ActiveRecord::Schema.define(version: 2019_06_27_163739) do
     t.string "last_name"
     t.string "email"
     t.string "phone"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "student_id"
+    t.string "password_digest"
+    t.string "username"
     t.index ["student_id"], name: "index_parents_on_student_id"
   end
 
@@ -65,10 +67,11 @@ ActiveRecord::Schema.define(version: 2019_06_27_163739) do
     t.string "last_name"
     t.string "email"
     t.string "phone"
-    t.string "password"
     t.integer "counselor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "username"
     t.index ["counselor_id"], name: "index_students_on_counselor_id"
   end
 

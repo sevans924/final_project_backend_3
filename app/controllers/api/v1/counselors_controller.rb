@@ -5,9 +5,10 @@ module Api
 
                 before_action :find_counselor, only: [:show, :edit, :update]
 
-                # def index
-                #     @counselors = Counselor.all
-                # end
+                def index
+                    @counselors = Counselor.all
+                    render json: @counselors
+                end
 
                 def show
                     render json: @counselor
@@ -37,7 +38,7 @@ module Api
                 end
 
                 def counselor_params
-                    params.require(:counselor).permit(:first_name, :last_name, :email, :phone, :password)
+                    params.require(:counselor).permit(:first_name, :last_name, :email, :phone, :password_digest, :username)
                 end
 
 
