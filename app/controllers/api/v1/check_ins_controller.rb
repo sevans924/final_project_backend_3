@@ -20,9 +20,10 @@ module Api
 
 
           def create
-              @check_in = check_in.new(check_in_params)
+              @check_in = CheckIn.new(checkin_params)
       
-              if @check_in.save?
+              if @check_in.valid?
+                @check_in.save
                 render json: @check_in
               end
               
@@ -33,6 +34,16 @@ module Api
               render json: @check_in
           end
 
+          def student_plan
+            @check_in = CheckIn.where(plan: true)
+            render json: @check_in  
+          end
+
+          def student_check_in
+            @check_in = CheckIn.where(plan: false) 
+            render json: @check_in 
+          end
+
 
           private
           def find_checkin
@@ -41,7 +52,7 @@ module Api
 
 
           def checkin_params
-              params.require(:check_in).permit(:student_id, :counselor_id, :plan, :goal, :signal, :strategy, :signal_reflection, :emotion, :event, :reflection, :created_at)
+              params.require(:check_in).permit(:student_id, :counselor_id, :plan, :goal, :signal, :strategy, :signal_reflection, :emotion, :event, :reflection)
           end
       end
     end

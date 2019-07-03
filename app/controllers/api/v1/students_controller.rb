@@ -32,6 +32,8 @@ module Api
               @student.update(student_params)
               render json: @student
           end
+
+          
             
       private
             def find_student

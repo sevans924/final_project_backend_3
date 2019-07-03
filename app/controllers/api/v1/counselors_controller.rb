@@ -3,7 +3,7 @@ module Api
   
       class CounselorsController < ApplicationController
 
-                before_action :find_counselor, only: [:show, :edit, :update]
+                before_action :find_counselor, only: [:show, :edit, :update, :find_my_students]
 
                 def index
                     @counselors = Counselor.all
@@ -31,6 +31,27 @@ module Api
                     @counselor.update(counselor_params)
                     render json: @counselor
                 end
+
+                def find_my_students1
+                    @students = Student.where(counselor_id: 1)
+                    render json: @students
+                end
+
+                def find_my_students2
+                    @students = Student.where(counselor_id: 2)
+                    render json: @students
+                end
+
+                def find_my_checks1
+                    @checks = CheckIn.where(counselor_id: 1)
+                    render json: @checks
+                end
+
+                def find_my_checks2
+                    @checks = CheckIn.where(counselor_id: 2)
+                    render json: @checks
+                end
+
             private
 
                 def find_counselor
