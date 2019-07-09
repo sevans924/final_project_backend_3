@@ -3,7 +3,7 @@ module Api
 
     class ParentsController < ApplicationController
 
-          before_action :find_parent, only: [:show, :edit, :update]
+          before_action :find_parent, only: [:show, :edit, :update, :find_join]
 
         def index
           @parents = Parent.all
@@ -18,11 +18,21 @@ module Api
 
           end
 
+         
+
+          def find_join
+            @student_parent = StudentParent.where(parent_id: @parent)
+            render json: @student_parent
+          end
+
+     
+
 
           def create
-              @parent = parent.new(parent_params)
+              @parent = Parent.new(parent_params)
       
-              if @parent.save?
+              if @parent.valid?
+                @parent.save
                 render json: @parent
               end
               
@@ -38,7 +48,7 @@ module Api
             @parent = Parent.find(params[:id])
           end
           def parent_params
-              params.require(:parent).permit(:first_name, :last_name, :email, :phone, :password_digest, :username)
+              params.require(:parent).permit(:first_name, :last_name, :email, :phone, :password, :username, :is_student, :is_counselor, :is_parent)
           end
       end
     end

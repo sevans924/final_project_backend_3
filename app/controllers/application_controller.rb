@@ -5,12 +5,12 @@ class ApplicationController < ActionController::API
 
     def issue_token(user)
         case user
-            when student.id
-                JWT.encode({student_id: student.id}, KEY, 'HS256')
-            when parent.id
-                JWT.encode({parent_id: parent.id}, KEY, 'HS256')
-            when counselor.id
-                JWT.encode({counselor_id: counselor.id}, KEY, 'HS256')
+            when @student
+                JWT.encode({student_id: @student.id}, KEY, 'HS256')
+            when @parent
+                JWT.encode({parent_id: @parent.id}, KEY, 'HS256')
+            when @counselor
+                JWT.encode({counselor_id: @counselor.id}, KEY, 'HS256')
         end
     end
   

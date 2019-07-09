@@ -3,7 +3,7 @@ module Api
 
     class StudentsController < ApplicationController
 
-          before_action :find_student, only: [:show, :edit, :update]
+          before_action :find_student, only: [:show, :edit, :update, :find_my_counselor, :find_my_checks, :find_my_plans]
 
           def index
             @students = Student.all
@@ -15,15 +15,25 @@ module Api
           end
 
           def edit
-
+            binding.pry
+            # newStudentInfo = params
+            # @student.update(params)
+            # @student.save
           end
 
 
           def create
               @student = Student.new(student_params)
       
-              if @student.save?
+              if @student.valid?
+                @student.save
                 render json: @student
+              else
+                render json: {
+                  status: 'error',
+                  message: 'Invalid Username or Password',
+                  code: 422
+                 }
               end
               
             end
@@ -32,6 +42,22 @@ module Api
               @student.update(student_params)
               render json: @student
           end
+
+          def find_my_counselor
+            @counselor = Counselor.where(id: @student.counselor_id)
+            render json: @counselor
+        end
+
+        def find_my_plans
+          @plans = CheckIn.where(student_id: @student.id, plan: true)
+          render json: @plans
+      end
+
+
+        def find_my_checks
+            @checks = CheckIn.where(student_id: @student.id, plan:false)
+            render json: @checks
+        end
 
           
             
@@ -42,7 +68,7 @@ module Api
 
 
           def student_params
-              params.require(:student).permit(:first_name, :last_name, :email, :phone, :password, :counselor_id)
+              params.require(:student).permit(:first_name, :last_name, :email, :phone, :password, :counselor_id, :username, :is_student, :is_parent, :is_counselor)
           end
 
     end

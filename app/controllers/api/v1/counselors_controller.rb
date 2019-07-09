@@ -1,9 +1,11 @@
+require 'pry'
+
 module Api
     module V1
   
       class CounselorsController < ApplicationController
 
-                before_action :find_counselor, only: [:show, :edit, :update, :find_my_students]
+                before_action :find_counselor, only: [:show, :edit, :update, :find_my_students, :find_student_checks]
 
                 def index
                     @counselors = Counselor.all
@@ -21,7 +23,8 @@ module Api
                 def create
                     @counselor = Counselor.new(counselor_params)
             
-                    if @counselor.save?
+                    if @counselor.valid?
+                        @counselor.save
                         render json: @counselor
                     end
                     
@@ -32,25 +35,17 @@ module Api
                     render json: @counselor
                 end
 
-                def find_my_students1
-                    @students = Student.where(counselor_id: 1)
+                def find_my_students
+                    @students = Student.where(counselor_id: @counselor)
                     render json: @students
                 end
 
-                def find_my_students2
-                    @students = Student.where(counselor_id: 2)
-                    render json: @students
-                end
 
-                def find_my_checks1
-                    @checks = CheckIn.where(counselor_id: 1)
+                def find_student_checks
+                    @checks = CheckIn.where(counselor_id: @counselor, plan: false)
                     render json: @checks
                 end
 
-                def find_my_checks2
-                    @checks = CheckIn.where(counselor_id: 2)
-                    render json: @checks
-                end
 
             private
 
@@ -59,7 +54,7 @@ module Api
                 end
 
                 def counselor_params
-                    params.require(:counselor).permit(:first_name, :last_name, :email, :phone, :password_digest, :username)
+                    params.require(:counselor).permit(:first_name, :last_name, :email, :phone, :password, :username, :is_student, :is_counselor, :is_parent)
                 end
 
 

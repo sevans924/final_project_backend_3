@@ -13,20 +13,20 @@ Parent.destroy_all
 CheckIn.destroy_all
 StudentParent.destroy_all
 
-counselor1 = Counselor.create(first_name: "Meghan", last_name: "Cassidy", email: "meghan@gmail.com", phone: "3015557777", password: "meghanmeghan", username: "meghan@gmail.com")
-counselor2 = Counselor.create(first_name: "Lisa", last_name: "Sylvester", email: "lisa@gmail.com", phone: "3015557726", password: "lisalisa", username: "lisa@gmail.com")
+counselor1 = Counselor.create(first_name: "Meghan", last_name: "Cassidy", email: "meghan@gmail.com", phone: "3015557777", password: "meghanmeghan", username: "meghan@gmail.com", is_student: false, is_parent: false, is_counselor: true)
+counselor2 = Counselor.create(first_name: "Lisa", last_name: "Sylvester", email: "lisa@gmail.com", phone: "3015557726", password: "lisalisa", username: "lisa@gmail.com", is_student: false, is_parent: false, is_counselor: true)
 
-student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn", counselor_id: counselor1.id, username: "john@gmail.com")
-student2 = Student.create(first_name: "Jack", last_name: "Robs", email: "jack@gmail.com", phone: "301555543", password: "jackjack", counselor_id: counselor1.id, username: "jack@gmail.com")
-student3 = Student.create(first_name: "Sonia", last_name: "Dums", email: "donia@gmail.com", phone: "3015526776", password: "soniasonia", counselor_id: counselor2.id, username: "sonia@gmail.com")
-student4 = Student.create(first_name: "Jose", last_name: "Elsy ", email: "jose@gmail.com", phone: "6205557776", password: "josejose", counselor_id: counselor2.id, username: "jose@gmail.com")
-student5 = Student.create(first_name: "Diana", last_name: "Utsy", email: "diana@gmail.com", phone: "3019957776", password: "dianadiana", counselor_id: counselor1.id, username: "diana@gmail.com")
-student6 = Student.create(first_name: "Mike", last_name: "Wnner", email: "mike@gmail.com", phone: "5605557776", password: "mikemike", counselor_id: counselor1.id, username: "mike@gmail.com")
-student7 = Student.create(first_name: "Jake", last_name: "Low", email: "jake@gmail.com", phone: "3015555676", password: "jakejake", counselor_id: counselor1.id, username: "jake@gmail.com")
-student8 = Student.create(first_name: "Noa", last_name: "Heinz", email: "noa@gmail.com", phone: "3415557776", password: "noanoa", counselor_id: counselor2.id, username: "noa@gmail.com")
-student9 = Student.create(first_name: "Bruce", last_name: "TsiTsi", email: "bruce@gmail.com", phone: "3015550976", password: "brucebruce", counselor_id: counselor2.id, username: "bruce@gmail.com")
+student1 = Student.create(first_name: "John", last_name: "Smith", email: "john@gmail.com", phone: "3015557776", password: "johnjohn", counselor_id: counselor1.id, username: "john@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student2 = Student.create(first_name: "Jack", last_name: "Robs", email: "jack@gmail.com", phone: "301555543", password: "jackjack", counselor_id: counselor1.id, username: "jack@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student3 = Student.create(first_name: "Sonia", last_name: "Dums", email: "donia@gmail.com", phone: "3015526776", password: "soniasonia", counselor_id: counselor2.id, username: "sonia@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student4 = Student.create(first_name: "Jose", last_name: "Elsy ", email: "jose@gmail.com", phone: "6205557776", password: "josejose", counselor_id: counselor2.id, username: "jose@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student5 = Student.create(first_name: "Diana", last_name: "Utsy", email: "diana@gmail.com", phone: "3019957776", password: "dianadiana", counselor_id: counselor1.id, username: "diana@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student6 = Student.create(first_name: "Mike", last_name: "Wnner", email: "mike@gmail.com", phone: "5605557776", password: "mikemike", counselor_id: counselor1.id, username: "mike@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student7 = Student.create(first_name: "Jake", last_name: "Low", email: "jake@gmail.com", phone: "3015555676", password: "jakejake", counselor_id: counselor1.id, username: "jake@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student8 = Student.create(first_name: "Noa", last_name: "Heinz", email: "noa@gmail.com", phone: "3415557776", password: "noanoa", counselor_id: counselor2.id, username: "noa@gmail.com", is_student: true, is_parent: false, is_counselor: false)
+student9 = Student.create(first_name: "Bruce", last_name: "TsiTsi", email: "bruce@gmail.com", phone: "3015550976", password: "brucebruce", counselor_id: counselor2.id, username: "bruce@gmail.com", is_student: true, is_parent: false, is_counselor: false)
 
-parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie", username: "maggie@gmail.com")
+parent1 = Parent.create(first_name: "Maggie", last_name: "Smith", email: "maggie@gmail.com", phone: "3015557778", password: "maggiemaggie", username: "maggie@gmail.com", is_student: false, is_parent: true, is_counselor: false)
 
 checkin1 = CheckIn.create(student_id: student1.id, counselor_id: counselor1.id, plan: false, goal: "Manage test anxiety", signal: "poor", strategy: "meditation", signal_reflection: "racing heart, dizziness", emotion: "nervous", event: "An hour before my math test", reflection: "I tried meditating but I couldn't focus, it just made me more worried.")
 checkin2 = CheckIn.create(student_id: student1.id, counselor_id: counselor1.id, plan: false, goal: "Manage test anxiety", signal: "good", strategy: "Music", signal_reflection: "racing heart, dizziness", emotion: "scared, anxious, nervous", event: "The night before my history test", reflection: "I listened to my Spotify playlist and it helped me calm down and focus.")
